@@ -1,0 +1,65 @@
+<% include ./partials/header.ejs %>
+
+    <div class="bg-green-100 flex items-center justify-center min-h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl overflow-auto">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-4">
+                    <img src="/images/uploads/<%= user.profileimage %>" alt="Profile Picture"
+                        class="w-24 h-24 rounded-full">
+                    <div>
+                        <h2 class="text-2xl font-bold text-green-600">Username: <%= user.username %>
+                        </h2>
+                        <p class="text-gray-700">Full Name: <%= user.fullname %>
+                        </p>
+                        <p class="text-gray-700">Email: <%= user.email %>
+                        </p>
+                    </div>
+                </div>
+                <a href="/profileupdate"
+                    class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Settings</a>
+            </div>
+            <div class="mb-6">
+                <p class="bg-gray-100 p-2 rounded-md">Contact: <%= user.contact %>
+                </p>
+                <p class="bg-gray-100 p-2 rounded-md">Branch: <%= user.branch %>
+                </p>
+                <p class="bg-gray-100 p-2 rounded-md">Graduation Year: <%= user.yearofpassing %>
+                </p>
+                <p class="bg-gray-100 p-2 rounded-md">Current Organisation: <%= user.currentorganisation %>
+                </p>
+                <p class="bg-gray-100 p-2 rounded-md">Designation: <%= user.designation %>
+                </p>
+                <p class="bg-gray-100 p-2 rounded-md">Location: <%= user.location %>
+                </p>
+                <p class="bg-gray-100 p-2 rounded-md">Bio: <%= user.bio %>
+                </p>
+            </div>
+            <div class="mt-8">
+                <h3 class="text-xl font-bold mb-4 text-green-600">User Posts</h3>
+                <a href="/postform"
+                    class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Make
+                    A Post</a>
+                <div class="w-full mt-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <% user.posts.forEach(function(post){ %>
+                            <div
+                                class="bg-gray-100 shadow-md rounded-lg overflow-hidden transform transition duration-500 hover:scale-105">
+                                <a href="/images/uploads/<%= post.postimage %>" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <img src="/images/uploads/<%= post.postimage %>"
+                                        class="w-full h-32 md:h-48 object-cover" alt="Post Image">
+                                </a>
+                                <div class="p-4">
+                                    <h5 class="text-lg font-semibold text-gray-700">
+                                        <%= post.caption %>
+                                    </h5>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include ./partials/footer.ejs %>
